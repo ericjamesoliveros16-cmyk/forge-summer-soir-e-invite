@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Axel & Danielle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Entrance Screen -->
+    <div class="entrance-screen" id="entranceScreen">
+        <div class="entrance-bg"></div>
+        <div class="entrance-content">
+            <p class="entrance-names">Axel &amp; Danielle</p>
+            <div class="entrance-divider"></div>
+            <p class="entrance-subtitle">are getting married</p>
+            <button class="enter-btn" id="enterBtn">Enter</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://base44.app/api/apps/6abba06ee4ffd152b5d390e5/files/mp/public/6abba06ee4ffd152b5d390e5/dfc7ded11_white-petals.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+        <span class="music-icon" id="musicIcon">&#9835;</span>
+    </button>
+
+    <header class="nav-header">
+        <div class="logo-group" id="logoHome">
+            <img class="nav-photo" src="https://base44.app/api/apps/6abba06ee4ffd152b5d390e5/files/mp/public/6abba06ee4ffd152b5d390e5/ee5145309_image_2d12dcec.jpeg" alt="Axel & Danielle">
+            <span class="logo">A & D</span>
+        </div>
+        <nav class="nav-links">
+            <a data-target="landing">Home</a>
+            <a data-target="story">Our Story</a>
+            <a data-target="entourage">Entourage</a>
+            <a data-target="gallery">Gallery</a>
+            <a data-target="event">Events</a>
+            <a data-target="rsvp">RSVP</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a data-target="landing">Home</a>
+        <a data-target="story">Our Story</a>
+        <a data-target="entourage">Entourage</a>
+        <a data-target="gallery">Gallery</a>
+        <a data-target="event">Events</a>
+        <a data-target="rsvp">RSVP</a>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <main id="landing" class="page active-page">
+        <section class="video-hero">
+            <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80">
+                <source src="https://videos.pexels.com/video-files/2252530/2252530-uhd_2560_1440_24fps.mp4" type="video/mp4">
+                <source src="https://videos.pexels.com/video-files/3129957/3129957-hd_1920_1080_30fps.mp4" type="video/mp4">
+            </video>
+            <div class="glitter-field">
+                <span class="glitter" style="--x:5%;--d:0s;--dur:4s"></span>
+                <span class="glitter" style="--x:12%;--d:0.8s;--dur:5s"></span>
+                <span class="glitter" style="--x:20%;--d:1.5s;--dur:3.5s"></span>
+                <span class="glitter" style="--x:28%;--d:0.3s;--dur:6s"></span>
+                <span class="glitter" style="--x:35%;--d:2s;--dur:4.5s"></span>
+                <span class="glitter" style="--x:42%;--d:1.2s;--dur:5.5s"></span>
+                <span class="glitter" style="--x:50%;--d:0.6s;--dur:4s"></span>
+                <span class="glitter" style="--x:58%;--d:2.5s;--dur:3.8s"></span>
+                <span class="glitter" style="--x:65%;--d:1.8s;--dur:5s"></span>
+                <span class="glitter" style="--x:72%;--d:0.4s;--dur:4.2s"></span>
+                <span class="glitter" style="--x:80%;--d:3s;--dur:3.5s"></span>
+                <span class="glitter" style="--x:88%;--d:1.5s;--dur:5.5s"></span>
+                <span class="glitter" style="--x:95%;--d:2.2s;--dur:4.8s"></span>
+                <span class="glitter" style="--x:15%;--d:0.1s;--dur:6s"></span>
+                <span class="glitter" style="--x:45%;--d:2.8s;--dur:3.2s"></span>
+                <span class="glitter" style="--x:75%;--d:1.1s;--dur:5.8s"></span>
+            </div>
+            <div class="video-hero-overlay">
+                <div class="video-hero-content">
+                    <p class="video-hero-names">Axel &amp; Danielle</p>
+                    <div class="video-hero-divider"></div>
+                    <p class="video-hero-date">February 21, 2027</p>
+                    <p class="video-hero-loc">Aquila, Tagaytay</p>
+                </div>
+                <div class="scroll-indicator" onclick="document.querySelector('.hero-split').scrollIntoView({behavior:'smooth'})">
+                    <span></span>
+                    <p>Scroll</p>
+                </div>
+            </div>
+        </section>
+        <section class="hero-split">
+            <div class="hero-image-side" style="background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80') no-repeat center center/cover;"></div>
+            <div class="hero-text-side">
+                <div class="hero-content-frame">
+                    <p class="hero-tagline">Save The Date</p>
+                    <h1>Axel &amp; Danielle</h1>
+                    <p class="hero-details">FEBRUARY 21, 2027 &bull; AQUILA, TAGAYTAY</p>
+                    <div class="countdown-container" id="countdown">
+                        <div class="time-box"><span id="days">00</span><label>Days</label></div>
+                        <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+                        <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
+                        <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
+                    </div>
+                    <div class="hero-squares">
+                        <div class="hero-square" data-target="story"><span class="square-icon">&#10084;</span><span class="square-label">Our Story</span></div>
+                        <div class="hero-square" data-target="gallery"><span class="square-icon">&#128247;</span><span class="square-label">Gallery</span></div>
+                        <div class="hero-square" data-target="event"><span class="square-icon">&#127881;</span><span class="square-label">Events</span></div>
+                    </div>
+                    <button class="action-btn" data-target="rsvp">Kindly Reply</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section id="story" class="page">
+        <div class="section-hero" style="background: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80') no-repeat center center/cover;"><div class="section-hero-overlay"><h2>Our Story</h2></div></div>
+        <div class="content-card">
+            <div class="story-photo"><img src="https://images.unsplash.com/photo-1606800052052-a08af0141891?w=800&q=80" alt="Axel & Danielle"></div>
+            <p class="quote">"It started over a shared cup of coffee..."</p>
+            <p>From a chance encounter to a beautiful journey spanning several years, we discovered a love that balances, completes, and inspires us daily.</p>
+            <p>We have traveled together, dreamed together, and now we cannot wait to vow a lifetime of support, friendship, and deep affection before our closest family and friends.</p>
+        </div>
+    </section>
+    <section id="entourage" class="page">
+        <div class="section-hero" style="background: url('https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1200&q=80') no-repeat center center/cover;"><div class="section-hero-overlay"><h2>The Wedding Party</h2></div></div>
+        <div class="content-card">
+            <div class="grid-container">
+                <div class="grid-section"><h3>The Groom's Side</h3><ul><li>Michael Evans <span>Best Man</span></li><li>David Miller <span>Groomsman</span></li><li>James Rodriguez <span>Groomsman</span></li></ul></div>
+                <div class="grid-section"><h3>The Bride's Side</h3><ul><li>Emma Watson <span>Maid of Honor</span></li><li>Olivia Taylor <span>Bridesmaid</span></li><li>Sophia Chen <span>Bridesmaid</span></li></ul></div>
+            </div>
+        </div>
+    </section>
+    <section id="gallery" class="page">
+        <div class="section-hero" style="background: url('https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=1200&q=80') no-repeat center center/cover;"><div class="section-hero-overlay"><h2>Our Moments</h2></div></div>
+        <div class="content-card">
+            <div class="gallery-grid">
+                <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Wedding 1"></div>
+                <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=600&q=80" alt="Wedding 2"></div>
+                <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt="Wedding 3"></div>
+                <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt="Wedding 4"></div>
+                <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt="Wedding 5"></div>
+                <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1606800052052-a08af0141891?w=600&q=80" alt="Wedding 6"></div>
+            </div>
+        </div>
+    </section>
+    <section id="event" class="page">
+        <div class="section-hero" style="background: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80') no-repeat center center/cover;"><div class="section-hero-overlay"><h2>Ceremony &amp; Reception</h2></div></div>
+        <div class="content-card">
+            <div class="grid-container">
+                <div class="grid-section"><h3>The Ceremony</h3><p><strong>Time:</strong> 4:00 PM</p><p><strong>Location:</strong> Aquila Wedding Venue</p><p class="sub-detail">Aquila, Tagaytay City, Philippines</p></div>
+                <div class="grid-section"><h3>The Reception</h3><p><strong>Time:</strong> 6:00 PM</p><p><strong>Location:</strong> The Grand Pavilion</p><p class="sub-detail">Aquila, Tagaytay City, Philippines</p></div>
+            </div>
+            <p class="dress-code">DRESS CODE: BLACK TIE OPTIONAL</p>
+        </div>
+    </section>
+    <section id="rsvp" class="page">
+        <div class="section-hero" style="background: url('https://images.unsplash.com/photo-1606800052052-a08af0141891?w=1200&q=80') no-repeat center center/cover;"><div class="section-hero-overlay"><h2>Kindly Reply</h2></div></div>
+        <div class="content-card compact-card">
+            <p class="deadline">Please respond by January 21, 2027</p>
+            <form id="weddingRsvpForm">
+                <div class="form-group"><label for="guest-name">Full Name</label><input type="text" id="guest-name" required placeholder="Your Name"></div>
+                <div class="form-group"><label for="guest-email">Email Address</label><input type="email" id="guest-email" required placeholder="Your Email"></div>
+                <div class="form-group"><label>Attendance</label><div class="radio-choices"><label class="radio-label"><input type="radio" name="attendance" value="yes" checked> Accepts with Joy</label><label class="radio-label"><input type="radio" name="attendance" value="no"> Declines with Regret</label></div></div>
+                <div class="form-group"><label for="dietary">Dietary Restrictions</label><select id="dietary"><option value="none">None</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option><option value="gf">Gluten-Free</option></select></div>
+                <button type="submit" class="submit-btn">Submit RSVP</button>
+            </form>
+            <div id="form-message">Thank you! Your response has been successfully sent.</div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
