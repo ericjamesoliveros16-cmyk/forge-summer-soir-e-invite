@@ -47,7 +47,6 @@ body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-cream);
 .page { display: none; min-height: 100vh; width: 100%; animation: revealPage 0.8s cubic-bezier(0.25,1,0.5,1) forwards; }
 .page.active-page { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; padding: 0; }
 @keyframes revealPage { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-/* --- THANK YOU PAGE --- */
 .thankyou-hero { width: 100%; min-height: 100vh; background: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80') no-repeat center center/cover; position: relative; margin-top: 70px; display: flex; align-items: center; justify-content: center; }
 .thankyou-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.65)); display: flex; align-items: center; justify-content: center; }
 .thankyou-content { position: relative; z-index: 2; text-align: center; padding: 40px; max-width: 600px; animation: fadeInUp 1s ease; }
@@ -60,7 +59,6 @@ body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-cream);
 .thankyou-date { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
 .thankyou-content .action-btn { color: var(--soft-white); border-color: var(--soft-white); }
 .thankyou-content .action-btn:hover { background: var(--gold-accent); border-color: var(--gold-accent); }
-/* --- REST --- */
 .video-hero { position: relative; width: 100%; height: 100vh; overflow: hidden; }
 .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
 .glitter-field { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; overflow: hidden; }

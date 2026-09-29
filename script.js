@@ -62,36 +62,7 @@ document.querySelectorAll('.hero-square').forEach(sq => {
 });
 
 // --- RSVP Form -> Google Sheets ---
-// IMPORTANT: Replace this URL with your Google Apps Script Web App URL
-// See instructions below in comments
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec';
-
-/*
-  HOW TO SET UP GOOGLE SHEETS INTEGRATION:
-  
-  1. Go to https://sheets.google.com and create a new spreadsheet
-  2. Name it "Wedding RSVPs" (or anything you like)
-  3. Add headers in row 1: Name | Email | Attendance | Dietary | Date
-  4. In the sheet, click Extensions > Apps Script
-  5. Delete the default code and paste this:
-  
-     function doPost(e) {
-       var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-       var data = JSON.parse(e.postData.contents);
-       sheet.appendRow([data.name, data.email, data.attendance, data.dietary, new Date()]);
-       return ContentService.createTextOutput(JSON.stringify({status: 'success'}))
-         .setMimeType(ContentService.MimeType.JSON);
-     }
-  
-  6. Click Deploy > New deployment
-  7. Select type: Web app
-  8. Description: "RSVP Form"
-  9. Execute as: Me
-  10. Who has access: Anyone
-  11. Click Deploy, authorize when prompted
-  12. Copy the Web App URL
-  13. Replace GOOGLE_SHEET_URL above with that URL
-*/
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw0w18vI0MUpDJS3xvRTFJzVoFsZOLnu8Sw1JUCKo6i0AXgfQgI4g10XxeNP9VJpllq3g/exec';
 
 document.getElementById('weddingRsvpForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -119,7 +90,7 @@ document.getElementById('weddingRsvpForm').addEventListener('submit', function(e
         submitBtn.textContent = 'Submit RSVP';
         navigate('thankyou');
     }).catch(function() {
-        // Even if it fails (no-cors always resolves), still show thank you
+        // Even on error, show thank you (no-cors always resolves)
         document.getElementById('weddingRsvpForm').reset();
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit RSVP';
