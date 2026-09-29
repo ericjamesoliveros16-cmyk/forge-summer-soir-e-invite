@@ -38,7 +38,7 @@ menuToggle.addEventListener('click', function() {
 });
 menuOverlay.addEventListener('click', closeMenu);
 
-// --- Navigation (both desktop nav-links and mobile-menu links) ---
+// --- Navigation ---
 function navigate(targetId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
     document.getElementById(targetId).classList.add('active-page');
@@ -60,6 +60,83 @@ document.querySelectorAll('.action-btn').forEach(btn => {
 document.querySelectorAll('.hero-square').forEach(sq => {
     sq.addEventListener('click', function() { navigate(this.dataset.target); });
 });
+
+// --- RSVP Form -> Google Sheets ---
+// IMPORTANT: Replace this URL with your Google Apps Script Web App URL
+// See instructions below in comments
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec';
+
+/*
+  HOW TO SET UP GOOGLE SHEETS INTEGRATION:
+  
+  1. Go to https://sheets.google.com and create a new spreadsheet
+  2. Name it "Wedding RSVPs" (or anything you like)
+  3. Add headers in row 1: Name | Email | Attendance | Dietary | Date
+  4. In the sheet, click Extensions > Apps Script
+  5. Delete the default code and paste this:
+  
+     function doPost(e) {
+       var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+       var data = JSON.parse(e.postData.contents);
+       sheet.appendRow([data.name, data.email, data.attendance, data.dietary, new Date()]);
+       return ContentService.createTextOutput(JSON.stringify({status: 'success'}))
+         .setMimeType(ContentService.MimeType.JSON);
+     }
+  
+  6. Click Deploy > New deployment
+  7. Select type: Web app
+  8. Description: "RSVP Form"
+  9. Execute as: Me
+  10. Who has access: Anyone
+  11. Click Deploy, authorize when prompted
+  12. Copy the Web App URL
+  13. Replace GOOGLE_SHEET_URL above with that URL
+*/
+
+document.getElementById('weddingRsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    
+    var formData = {
+        name: document.getElementById('guest-name').value,
+        email: document.getElementById('guest-email').value,
+        attendance: document.querySelector('input[name="attendance"]:checked').value,
+        dietary: document.getElementById('dietary').value
+    };
+    
+    // Send to Google Sheets
+    fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    }).then(function() {
+        // Success - go to thank you page
+        document.getElementById('weddingRsvpForm').reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit RSVP';
+        navigate('thankyou');
+    }).catch(function() {
+        // Even if it fails (no-cors always resolves), still show thank you
+        document.getElementById('weddingRsvpForm').reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit RSVP';
+        navigate('thankyou');
+    });
+    
+    // Fallback: after 3 seconds, go to thank you page regardless
+    setTimeout(function() {
+        if (!document.getElementById('thankyou').classList.contains('active-page')) {
+            document.getElementById('weddingRsvpForm').reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit RSVP';
+            navigate('thankyou');
+        }
+    }, 3000);
+});
+
 // --- Countdown ---
 const wd = new Date('2027-02-21T16:00:00').getTime();
 function updateCountdown() {
@@ -72,14 +149,12 @@ function updateCountdown() {
     document.getElementById('seconds').textContent = String(Math.floor((dist % 60000) / 1000)).padStart(2,'0');
 }
 updateCountdown(); setInterval(updateCountdown, 1000);
-// --- RSVP ---
-document.getElementById('weddingRsvpForm').addEventListener('submit', function(e) {
-    e.preventDefault(); document.getElementById('form-message').style.display = 'block'; this.reset();
-});
+
 // --- Gallery ---
 document.querySelectorAll('.gallery-img').forEach(img => {
     img.addEventListener('click', function() { window.open(this.src, '_blank'); });
 });
+
 // --- Video ---
 const hv = document.querySelector('.hero-video');
 if (hv) { hv.play().catch(function() {}); }
